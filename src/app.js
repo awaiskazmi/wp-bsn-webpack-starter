@@ -1,3 +1,6 @@
+// import "bootstrap";
+import Modal from "bootstrap.native/dist/components/modal-native";
+import Collapse from "bootstrap.native/dist/components/collapse-native.esm";
 import AOS from "aos";
 
 AOS.init({
@@ -21,10 +24,6 @@ function loadCSSFilesAfterLoad() {
   });
 }
 
-// import "bootstrap";
-import Modal from "bootstrap.native/dist/components/modal-native";
-import Collapse from "bootstrap.native/dist/components/collapse-native.esm";
-
 // const myModal = document.getElementById("exampleModal");
 const navbarCollapseMenu = document.getElementById("mobile-menu");
 const pageHeader = document.querySelector("#page-header");
@@ -40,62 +39,62 @@ let navbarCollapse = new Collapse(navbarCollapseMenu);
 // modal.toggle();
 
 window.addEventListener("scroll", (e) => {
-  // console.log("scrolling", e);
   window.pageYOffset > 0
     ? pageHeader.classList.add("scrolled")
     : pageHeader.classList.remove("scrolled");
 });
 
-window.pageYOffset != 0
-  ? window.scrollTo(window.scrollX, window.scrollY + 1)
-  : null;
-
-stackToggles.forEach((toggle) => {
-  toggle.addEventListener("click", toggleStack);
-});
-
-function toggleStack(e) {
-  const toggle = e.target.parentNode;
-  const toggleWrapper = toggle.parentNode;
-  const toggleParent = toggle.parentNode.parentNode;
-  const toggleParentOffsetTop =
-    toggleParent.getBoundingClientRect().top +
-    window.scrollY -
-    pageHeaderHeight -
-    30;
-  const localToggleGroup = toggleParent.querySelectorAll("[data-stack]");
-
-  // console.log(toggle, toggleWrapper);
-
-
-  // hide all
-  localToggleGroup.forEach((tog) => {
-    tog.classList.remove("active");
-    toggleParent
-      .querySelector(`[data-stack-content="${tog.dataset.stack}"]`)
-      .classList.remove("active");
-  });
-
-  toggle.classList.add("active");
-
-  toggleParent
-    .querySelector(`[data-stack-content="${toggle.dataset.stack}"]`)
-    .classList.add("active");
-
-  // height to set
-  const heightToSet = toggleParent.querySelector('.stack-content.active').clientHeight;
-
-  console.log(heightToSet);
-
-  toggleWrapper.style.minHeight = heightToSet + 'px';
-
-  scroll({
-    top: toggleParentOffsetTop,
-    behavior: "smooth",
-  });
-}
-
 // load some css filer after initial page load that are not critical
 window.onload = function () {
   loadCSSFilesAfterLoad();
 };
+
+// lazy loading images script
+let options = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.25,
+};
+let callback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      let imageUrl = entry.target.getAttribute("data-src");
+      if (imageUrl) {
+        entry.target.src = imageUrl;
+        observer.unobserve(entry.target);
+      }
+    }
+  });
+};
+let observer = new IntersectionObserver(callback, options);
+let lazyImagesToLoad = document.querySelectorAll(".lazy-image");
+lazyImagesToLoad.forEach((el) => {
+  observer.observe(el);
+});
+
+// LAZY LOAD IMAGES
+var lazyImages = document.querySelectorAll(".lazy-image");
+
+function lazyLoadImage(img) {
+  // img.src = img.dataset.src;
+  // img.classList.remove('lazy-image');
+
+  let options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.25,
+  };
+  let callback = (entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && entry.target.className === "lazy-image") {
+        let imageUrl = entry.target.getAttribute("data-src");
+        if (imageUrl) {
+          entry.target.src = imageUrl;
+          observer.unobserver(entry.target);
+        }
+      }
+    });
+  };
+  let observer = new IntersectionObserver(callback, options);
+  observer.observe(img);
+}
