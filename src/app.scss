@@ -1,6 +1,11 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 
-body {
-  // background-color: red;
-}
+@import "utils";
+
+@import "header";
+@import "footer";
+
+@import "~aos/src/sass/aos";
+
+// @import "../node_modules/hover.css/scss/hover.scss";

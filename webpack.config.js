@@ -3,8 +3,9 @@ const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   watch: true,
-  mode: "development",
+  mode: "production",
   entry: {
+    page: ["./src/page.scss"],
     app: ["./src/app.scss"],
     bundle: ["./src/app.js"],
   },

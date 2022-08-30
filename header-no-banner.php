@@ -20,11 +20,11 @@
 
 <body>
 
-  <header id="page-header" class="fixed-top">
-    <nav class="navbar navbar-expand-lg">
+  <header id="page-header" class="fixed-top page-header-dark">
+    <nav class="navbar navbar-dark navbar-expand-lg">
       <div class="container justify-content-between">
         <a class="navbar-brand p-0" href="<?php echo bloginfo( 'siteurl' ) ?>">
-          <img src="<?php image('logo.svg') ?>" height="70" alt="Logo">
+          <img src="<?php image('logo-dark.svg') ?>" height="70" alt="Logo">
         </a>
         <button class="navbar-toggler px-0" type="button"
           data-bs-toggle="collapse" data-bs-target="#mobile-menu"
@@ -40,7 +40,7 @@
           Consultation</a>
       </div>
     </nav>
-    <nav class="navbar collapse navbar-collapse fixed-top pb-9"
+    <nav class="navbar navbar-dark collapse navbar-collapse fixed-top pb-9"
       id="mobile-menu">
       <div class="container justify-content-between">
         <a class="navbar-brand p-0" href="#">

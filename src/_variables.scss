@@ -1,1 +1,131 @@
-$font-family-sans-serif: "Outfit", sans-serif;
+@import "../node_modules/bootstrap/scss/functions";
+
+:root {
+  --bs-root-font-size: 18px;
+  --bs-body-font-size: 20px;
+
+  @media (max-width: 768px) {
+    --bs-root-font-size: 18px;
+    --bs-body-font-size: 18px;
+  }
+}
+
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 40px;
+  font-weight: 500;
+}
+h3 {
+  font-size: 30px;
+}
+h4 {
+  font-size: 24px;
+}
+p {
+  font-size: 20px;
+}
+.sub-heading {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 28px;
+  }
+  p {
+    font-size: 18px;
+  }
+  .sub-heading {
+    font-size: 18px;
+  }
+}
+
+// $h1-font-size: $font-size-base * 3;
+// $h2-font-size: $font-size-base * 2;
+// $h3-font-size: $font-size-base * 1.5;
+
+$border-radius: 0;
+
+// Buttons
+$btn-padding-y: 14px !default;
+$btn-padding-x: 30px !default;
+
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+$body-color: #0a1835;
+$accent: #ae8f60;
+$dark: #0a1835;
+$light: #faf3e9;
+$black: #040914;
+$hr-color: #6e8ca0;
+$text-muted: #697183;
+$linkedin: #0077b7;
+
+$font-family-sans-serif: "Roboto Slab", sans-serif;
+$font-weight-semibold: 500;
+
+$min-contrast-ratio: 3;
+
+$font-size-root: 20px;
+$font-size-base: 1rem;
+
+$enable-rfs: false;
+
+$small-font-size: $font-size-base * 0.9;
+
+$custom-colors: (
+  "accent": $accent,
+  "dark": $dark,
+  "light": $light,
+  "black": $black,
+  "linkedin": $linkedin,
+);
+
+$custom-spacers: (
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 3.5,
+  8: $spacer * 4,
+  9: $spacer * 4.5,
+) !default;
+
+$grid-gutter-width: 2.4rem;
+$container-padding-x: $grid-gutter-width;
+
+$container-max-widths: (
+  xl: 1170px,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+$spacers: map-merge($spacers, $custom-spacers);
+
+// Header
+
+$navbar-light-color: #fff;
+$navbar-dark-color: $dark;
+
+$navbar-light-hover-color: $accent;
+$navbar-light-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+
+$navbar-dark-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+
+$navbar-light-toggler-border-color: rgba(0, 0, 0, 0);
+$navbar-dark-toggler-border-color: rgba(0, 0, 0, 0);
+
+$navbar-padding-y: $spacer * 2;
+
+// Links
+$link-color: $accent;
+$link-hover-color: $accent;
+
+$btn-font-size: 18px !default;
+$input-btn-font-size: 18px !default;

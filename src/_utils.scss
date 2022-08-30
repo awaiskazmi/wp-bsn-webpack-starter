@@ -1,0 +1,316 @@
+@import "variables";
+
+.sub-text {
+  opacity: 0.8;
+}
+
+.bg-cover {
+  background: center/cover no-repeat;
+}
+
+.bg-gradient-overlay {
+  position: relative;
+
+  .bg-overlay-front {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    background: linear-gradient(
+      89.75deg,
+      rgba(1, 6, 16, 0.9) 5.58%,
+      rgba(1, 7, 20, 0) 80.58%
+    );
+  }
+}
+
+@mixin stack-heading-common($fsz, $width, $space-after) {
+  position: relative;
+  font-size: $fsz;
+  width: $width;
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-bottom: $space-after;
+  }
+
+  &::after {
+    content: "";
+    font-family: "FontAwesome";
+  }
+
+  @include media-breakpoint-down(md) {
+    position: static;
+    width: 100%;
+    color: $dark;
+    font-size: 24px;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    padding-right: 0;
+    -webkit-text-stroke: 0px;
+
+    &::after {
+      content: "\f0d7";
+      width: auto;
+      height: auto;
+      background-color: transparent;
+      transition: transform 0.2s ease;
+    }
+
+    &.active::after {
+      transform: rotateZ(180deg);
+    }
+  }
+}
+
+@mixin stack-content-common($width) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $width;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, max-height 0.6s ease;
+
+  &.active {
+    max-height: 1000px;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.stacks {
+  position: relative;
+  transition: min-height 0.4s ease;
+
+  @include media-breakpoint-down(md) {
+    min-height: unset !important;
+  }
+
+  &.stack-services {
+    .stack-heading {
+      padding-right: 1rem;
+      -webkit-text-stroke: 1px rgba(1, 6, 16, 0.9);
+      color: transparent;
+      transition: color 0.2s ease;
+
+      &.active {
+        color: $dark;
+        -webkit-text-stroke: 0px;
+      }
+
+      &::after {
+        width: 70%;
+        height: 2px;
+        background-color: $dark;
+        margin-left: 1rem;
+      }
+
+      @include stack-heading-common(2rem, 30%, 2rem);
+    }
+    .stack-content {
+      @include stack-content-common(70%);
+
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+
+      @include media-breakpoint-down(md) {
+        grid-template-columns: repeat(2, 1fr);
+        position: static;
+        width: 100%;
+        max-height: 0;
+        opacity: 1;
+        overflow: hidden;
+      }
+
+      span {
+        display: block;
+        padding: 0.75rem;
+        border: 2px solid rgba(10, 24, 53, 0);
+        font-size: 16px;
+        line-height: 22px;
+        // cursor: pointer;
+        transition: border-color 0.2s ease;
+
+        &:hover {
+          border-color: rgba(10, 24, 53, 1);
+        }
+
+        @include media-breakpoint-down(md) {
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+
+  &.stack-cards {
+    .stack-heading {
+      span {
+        display: inline-block;
+        position: relative;
+        color: $dark;
+        opacity: 0.3;
+      }
+
+      span::before {
+        content: "";
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: $accent;
+        transition: 0.2s ease;
+      }
+
+      &.active span {
+        opacity: 1;
+      }
+
+      &.active span::before {
+        width: 100%;
+      }
+
+      // span::after {
+      //   content: "\f0da";
+      //   position: relative;
+      //   display: inline-block;
+      //   font-family: "FontAwesome";
+      //   transform: rotateZ(0deg) scale(0);
+      //   top: -1rem;
+      //   margin-left: 0.5rem;
+      //   transition: transform 0.2s ease;
+      //   color: $accent;
+      // }
+
+      // &.active span::after {
+      //   transform: rotateZ(-45deg) scale(1);
+      // }
+
+      @include stack-heading-common(1.5rem, 35%, 3rem);
+
+      @include media-breakpoint-down(md) {
+        span::before {
+          width: 0 !important;
+        }
+        &.active span {
+          flex-grow: 1;
+          &::before {
+            width: calc(100% + 1rem) !important;
+          }
+        }
+      }
+    }
+    .stack-content {
+      @include stack-content-common(65%);
+      opacity: 0;
+
+      .card-body {
+        background-color: #f7f7f7;
+        border: 0;
+        padding: 1.5rem;
+      }
+
+      @include media-breakpoint-down(md) {
+        position: static;
+        width: 100%;
+        max-height: 0;
+        opacity: 1;
+        overflow: hidden;
+
+        .card {
+          margin-bottom: 2rem;
+        }
+        .card-body {
+          padding: 0 0 1.66666667rem 0;
+
+          img {
+            margin-bottom: 1.66666667rem;
+          }
+          h5,
+          p,
+          a {
+            padding-left: 1.111rem;
+            padding-right: 1.111rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+#page-content {
+  .has-pointer {
+    position: relative;
+    display: inline-block;
+  }
+  .has-pointer::after {
+    content: "\f0da";
+    position: absolute;
+    display: inline-block;
+    font-family: "FontAwesome";
+    transform: rotateZ(0deg) scale(0);
+    top: -1rem;
+    right: -1.5rem;
+    margin-left: 0.5rem;
+    transition: transform 0.2s ease;
+    transform: rotateZ(-45deg) scale(1);
+    color: $accent;
+  }
+}
+
+.lh-1 {
+  line-height: 1;
+}
+.lh-1-1 {
+  line-height: 1.1;
+}
+.lh-1-2 {
+  line-height: 1.2;
+}
+.lh-1-3 {
+  line-height: 1.3;
+}
+.lh-1-4 {
+  line-height: 1.4;
+}
+.lh-1-5 {
+  line-height: 1.5;
+}
+.lh-1-6 {
+  line-height: 1.6;
+}
+
+#location-cards {
+  .fa {
+    width: 1.15rem;
+  }
+}
+
+.form-control {
+  &::placeholder {
+    color: rgba(10, 24, 53, 0.5);
+  }
+  &:focus {
+    box-shadow: none;
+    border-color: $accent;
+  }
+}

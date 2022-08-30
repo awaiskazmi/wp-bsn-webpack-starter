@@ -1,0 +1,88 @@
+#page-banner {
+  min-height: 600px;
+  background: rgba(1, 6, 16, 0.9) center/cover no-repeat;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+#page-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    89.83deg,
+    rgba(1, 6, 16, 0.9) 0.13%,
+    rgba(1, 6, 18, 0.445312) 54.66%,
+    rgba(1, 7, 20, 0.8) 99.84%
+  );
+  z-index: 0;
+}
+
+#page-content {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.32;
+  }
+
+  p {
+    line-height: 1.8;
+  }
+
+  p + h3 {
+    margin-top: 2rem;
+  }
+
+  .aligncenter {
+    display: block;
+    margin: 1rem auto;
+  }
+
+  .alignright {
+    float: right;
+    margin-left: 2rem;
+  }
+
+  .alignleft {
+    float: left;
+    margin-right: 2rem;
+  }
+
+  .alignnone {
+    margin: 1rem auto;
+  }
+
+  .wp-caption-text {
+    color: #697183;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .alignnone,
+    .aligncenter,
+    .alignleft,
+    .alignright {
+      float: none;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    p + p {
+      margin-top: 1.5rem;
+    }
+  }
+}

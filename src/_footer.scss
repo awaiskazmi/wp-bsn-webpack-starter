@@ -1,0 +1,31 @@
+@import "variables";
+
+footer {
+  ul li {
+    &.list-inline-item {
+      &:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+
+      a {
+        font-size: $small-font-size;
+        text-decoration: none;
+        color: $white;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+    @include media-breakpoint-down(md) {
+      margin-bottom: 1rem;
+    }
+  }
+  .social-icon .fa-circle {
+    transition: color 0.2s ease;
+  }
+  .social-icon:hover .fa-circle {
+    color: $accent !important;
+  }
+}
